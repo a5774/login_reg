@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>tap</button>
+    <script>
+        let btn = document.querySelector('button');
+        btn.onclick = () => {
+            let url = "http://127.0.0.1:8080/login"
+            fetch(url, {
+                method: "POST",
+                // mode:"cors",
+                headers: {
+                    "Content-Type": "application/json",
+                    // "Content-Type": "text/plain"
+                    "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTY0MDMxMjU2OSwiZXhwIjoxNjQxOTUyODgyMTkwfQ.Tz-ski3-saloTbdY_HxlBfcY5abyD6q8dH2Pi6m_5qBPPDHUI7QWhwnK813bSv87-0zqTsEg6j_pSYd6Ai9E0iPonowvBBmUTaQQMtFb4ESPiJ7kQ5s1K8_hOEBUf_Fi1ICwAKSEEFbP4MWr7cOlPmwm6QRAmhPiHwhkW6bdrEQ"
+                },
+                // bad request params err ,not allow [object]
+                body: JSON.stringify({
+                    "username": "admin",
+                    "password": "root"
+                })
+            }).then(resp => {
+                resp.headers.forEach((k, v) => {
+                    console.log(v, k);
+                })
+            }).then(res => {
+                console.log(res);
+            })
+
+        }
+
+    </script>
+</body>
+
+</html>
